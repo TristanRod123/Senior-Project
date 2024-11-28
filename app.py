@@ -4,6 +4,7 @@ import csv  # CSV file handling.
 import copy  # Object copying.
 import argparse  # Command-line argument parsing.
 import itertools  # Iteration utilities.
+import math # Calculating distance
 from collections import Counter  # Count elements.
 from collections import deque  # Fast queue operations.
 
@@ -14,6 +15,23 @@ import mediapipe as mp  # ML pipelines for vision tasks.
 from utils import CvFpsCalc  # FPS calculator.
 from model import KeyPointClassifier  # Classifies keypoints.
 from model import PointHistoryClassifier
+
+def calculate_distance(point1, point2):
+    """Calculate Euclidean distance in 2D."""
+    return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
+
+connections = [
+    # Thumb
+    (0, 1), (1, 2), (2, 3), (3, 4),
+    # Index finger
+    (0, 5), (5, 6), (6, 7), (7, 8),
+    # Middle finger
+    (0, 9), (9, 10), (10, 11), (11, 12),
+    # Ring finger
+    (0, 13), (13, 14), (14, 15), (15, 16),
+    # Pinky
+    (0, 17), (17, 18), (18, 19), (19, 20)
+]
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -129,13 +147,17 @@ def main():
                 # Landmark calculation
                 landmark_list = calc_landmark_list(debug_image, hand_landmarks)
 
+                # Calculate distances
+                points = [landmark_list[i] for i in range(len(landmark_list))]
+                distances = [calculate_distance(points[start], points[end]) for start, end in connections]
+
                 # Conversion to relative coordinates / normalized coordinates
                 pre_processed_landmark_list = pre_process_landmark(
                     landmark_list)
                 # pre_processed_point_history_list = pre_process_point_history(
                 #     debug_image, point_history)
                 # Write to the dataset file
-                logging_csv(number, mode, pre_processed_landmark_list)
+                logging_csv(number, mode, pre_processed_landmark_list, distances)
 
                 # Hand sign classification
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
@@ -275,14 +297,14 @@ def pre_process_landmark(landmark_list):
 #     return temp_point_history
 
 
-def logging_csv(number, mode, landmark_list):
+def logging_csv(number, mode, landmark_list, distances):
     if mode == 0:
         pass
     if mode == 1 and (0 <= number <= 9):
         csv_path = 'model/keypoint_classifier/keypoint.csv'
         with open(csv_path, 'a', newline="") as f:
             writer = csv.writer(f)
-            writer.writerow([number, *landmark_list])
+            writer.writerow([number, *landmark_list, *distances])
     # if mode == 2 and (0 <= number <= 9):
     #     csv_path = 'model/point_history_classifier/point_history.csv'
     #     with open(csv_path, 'a', newline="") as f:
