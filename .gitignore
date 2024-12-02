@@ -163,3 +163,7 @@ cython_debug/
 archive/
 flipped_archive/
 model/keypoint_classifier/keypoint_distance.csv
+model/keypoint_classifier/keypoint_original_data_v2.csv
+model/keypoint_classifier/keypoint.csv
+asl_alphabet/
+flipped_asl_alphabet/

@@ -14,7 +14,7 @@ def count_labels_in_csv(file_path):
     return label_counts
 
 # Example usage
-file_path = 'model/keypoint_classifier/keypoint.csv'
+file_path = 'model/keypoint_classifier/keypoint_original_data_v2.csv'
 counts = count_labels_in_csv(file_path)
 
 # Print individual label counts
