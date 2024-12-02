@@ -26,8 +26,13 @@ def flip_and_copy_images(input_dir, output_dir, flip_type=1):
         for filename in files:
             # Construct the full paths for the input and output images
             image_path = os.path.join(root, filename)
+
+            # Split the filename into name and extension
+            filename_without_extension, file_extension = os.path.splitext(filename)
+
+            # Create the output paths
             original_image_path = os.path.join(output_subdir, filename)
-            flipped_image_path = os.path.join(output_subdir, f"flipped_{filename}")
+            flipped_image_path = os.path.join(output_subdir, f"{filename_without_extension}_flipped{file_extension}")
 
             # Read the image
             image = cv.imread(image_path)
@@ -43,10 +48,8 @@ def flip_and_copy_images(input_dir, output_dir, flip_type=1):
 
             # Save the flipped image
             cv.imwrite(flipped_image_path, flipped_image)
-            print(f"Saved flipped image: {flipped_image_path}")
-            print(f"Copied original image: {original_image_path}")
 
 # Example usage
-input_directory = 'archive/Train_Alphabet'
-output_directory = 'flipped_archive/Train_Alphabet'
+input_directory = 'asl_alphabet/asl_alphabet'
+output_directory = 'flipped_asl_alphabet/asl_alphabet'
 flip_and_copy_images(input_directory, output_directory, flip_type=1)  # 1 for horizontal flip
