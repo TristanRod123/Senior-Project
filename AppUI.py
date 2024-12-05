@@ -10,17 +10,19 @@ import pickle
 from model import KeyPointClassifier
 import numpy as np
 import tensorflow as tf
+from mediapipe.python.solutions.drawing_utils import DrawingSpec, draw_landmarks as mp_draw_landmarks
+from mediapipe.python.solutions.hands import HAND_CONNECTIONS
 
 # Initialize KeyPointClassifier with the correct model path
-keypoint_classifier = KeyPointClassifier('C:/Users/Yusuf/Downloads/Senior-Project/model/keypoint_classifier/keypoint_classifier.tflite')  # Update path
+keypoint_classifier = KeyPointClassifier('model/keypoint_classifier/keypoint_classifier.tflite')  # Update path
 
 # Load labels
 def load_labels(label_path):
-    with open(label_path, 'r') as f:
+    with open(label_path, 'r', encoding='utf-8-sig') as f:
         labels = [line.strip() for line in f]
     return labels
 
-labels = load_labels('C:/Users/Yusuf/Downloads/Senior-Project/model/keypoint_classifier/keypoint_classifier_label.csv')  # Update path
+labels = load_labels('model/keypoint_classifier/keypoint_classifier_label.csv')  # Update path
 
 # Initialize Mediapipe hands
 mp_hands = mp.solutions.hands
@@ -57,22 +59,26 @@ def process_frame(frame, hands, keypoint_classifier, labels):
 
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
-            frame = draw_landmarks(frame, hand_landmarks.landmark)
+            frame = draw_landmarks(frame, hand_landmarks)
             landmark_list = calc_landmark_list(frame, hand_landmarks)  # Preprocess landmarks
             class_id = keypoint_classifier(landmark_list)  # Predict class ID
             recognized_text = labels[class_id]  # Map class ID to label
 
     return recognized_text, frame
 
-# Function to draw landmarks
-def draw_landmarks(image, landmark_list):
-    for landmark in landmark_list:
-        x, y = int(landmark.x * image.shape[1]), int(landmark.y * image.shape[0])
-        cv.circle(image, (x, y), 5, (0, 255, 0), -1)
+# Edit landmarks
+def draw_landmarks(image, hand_landmarks):
+    mp_draw_landmarks(
+        image,
+        hand_landmarks,
+        HAND_CONNECTIONS,
+        landmark_drawing_spec=DrawingSpec(color=(255, 165, 0), thickness=3, circle_radius=3),
+        connection_drawing_spec=DrawingSpec(color=(255, 255, 255), thickness=2),
+    )
     return image
 
-# Function to initialize the camera
-def initialize_camera(device=0, width=960, height=540):
+# Change camera and its size here
+def initialize_camera(device=0, width=960, height=960):
     cap = cv.VideoCapture(device)
     cap.set(cv.CAP_PROP_FRAME_WIDTH, width)
     cap.set(cv.CAP_PROP_FRAME_HEIGHT, height)
