@@ -8,7 +8,8 @@ import cv2 as cv
 import mediapipe as mp
 import pickle
 from model import KeyPointClassifier
-
+import numpy as np
+import tensorflow as tf
 
 # Initialize KeyPointClassifier with the correct model path
 keypoint_classifier = KeyPointClassifier('C:/Users/Yusuf/Downloads/Senior-Project/model/keypoint_classifier/keypoint_classifier.tflite')  # Update path
@@ -76,8 +77,7 @@ def initialize_camera(device=0, width=960, height=540):
     cap.set(cv.CAP_PROP_FRAME_WIDTH, width)
     cap.set(cv.CAP_PROP_FRAME_HEIGHT, height)
     return cap
-import numpy as np
-import tensorflow as tf
+
 
 class KeyPointClassifier:
     def __init__(self, model_path):
