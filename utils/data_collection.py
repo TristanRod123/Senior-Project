@@ -2,7 +2,7 @@ import csv
 import copy
 import cv2 as cv
 import mediapipe as mp
-from app import *
+from app_functions import *
 import os 
 import time
 import gc
