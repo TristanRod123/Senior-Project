@@ -1,11 +1,11 @@
-PyQt6
-opencv-python
-mediapipe
-numpy
-tensorflow
+PyQt6==6.7.1
+opencv-python==4.10.0.84
+mediapipe==0.10.18
+numpy==1.26.4
+tensorflow==2.18.0
 qtawesome
-scikit-learn
-keras
-pandas
-matplotlib
+scikit-learn==1.5.2
+keras==3.6.0
+pandas==2.2.3
+matplotlib==3.9.2
 
