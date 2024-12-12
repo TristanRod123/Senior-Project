@@ -1,0 +1,11 @@
+PyQt6
+opencv-python
+mediapipe
+numpy
+tensorflow
+qtawesome
+scikit-learn
+keras
+pandas
+matplotlib
+
