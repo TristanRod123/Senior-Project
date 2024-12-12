@@ -9,6 +9,7 @@ pip install -r requirements. txt
 # Demo
 How to run it using yor webcam
 
+cd Senior-Project
 python AppUI.py
 
 # Files
