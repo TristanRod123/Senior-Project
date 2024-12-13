@@ -59,31 +59,31 @@ DOWNLOAD AND INSTALL DATASET (not necessary for running demo, data points record
 ### fnn_keypoint_classification_v2.ipynb 
 - is the actual model that we used for training.
 
-### \utils\data_collection.py 
+### data_collection.py 
 -takes the images and puts them through mediapipe which then converts it to data the model uses to train on.
 
-### \model\keypoint_classifier\keypoint_classifier_label.csv 
+### keypoint_classifier_label.csv 
 - is where the labels are for each class
 
-### \model\keypoint_classifier\keypoint.csv 
+### keypoint.csv 
 - is where the data is stored from data_collection.py that is used to trin the model
 
-### \utils\flip_images.py 
+### flip_images.py 
 - is used to augment the data and flip the images for right-to-left-hand conversion and vice versa
 
-### \mlp_image_compare.ipynb 
+### mlp_image_compare.ipynb 
 - is another model we created that takes images instead of tabular data
 
-### \testing-distance.ipynb 
+### testing-distance.ipynb 
 -another model we created that uses the  distances between neighbor vectors on the hand
 
-### \utils\image_collection.py 
+### image_collection.py 
 - is used to collect images for media pipe to process by holding 'c'
 
-### \cnn_keypoint_classification.ipynb 
+### cnn_keypoint_classification.ipynb 
 - another model we made where instead of an mlp if uses a cnn
 
-### \keypoint_classification_cross_val.ipynb 
+### keypoint_classification_cross_val.ipynb 
 - is when we introduced K-fold cross-validation
 
 # Demo
