@@ -48,6 +48,43 @@ DOWNLOAD AND INSTALL DATASET (not necessary for running demo, data points record
 │  │ flip_images.py
 │  | image_collection.py
 ```
+# Files
+
+### fnn_keypoint_classification_v2.ipynb
+- This is a model training script for ASL sign recognition.
+
+### AppUI 
+- opens the interface that allows you to try making hand signs and detecting them.
+
+### fnn_keypoint_classification_v2.ipynb 
+- is the actual model that we used for training.
+
+### data_collection.py 
+-takes the images and puts them through mediapipe which then converts it to data the model uses to train on.
+
+### keypoint_classifier_label.csv 
+- is where the labels are for each class
+
+### keypoint.csv 
+- is where the data is stored from data_collection.py that is used to trin the model
+
+### flip_images.py 
+- is used to augment the data and flip the images for right-to-left-hand conversion and vice versa
+
+### mlp_image_compare.ipynb 
+- is another model we created that takes images instead of tabular data
+
+### testing-distance.ipynb 
+-another model we created that uses the  distances between neighbor vectors on the hand
+
+### image_collection.py 
+- is used to collect images for media pipe to process by holding 'c'
+
+### cnn_keypoint_classification.ipynb 
+- another model we made where instead of an mlp if uses a cnn
+
+### keypoint_classification_cross_val.ipynb 
+- is when we introduced K-fold cross-validation
 
 # Demo
 Connect Webcam
@@ -60,32 +97,6 @@ You can make a word or sentence by showing the sign and concatenating, then clea
 
 [Screencast from 2024-12-12 05-22-26.webm](https://github.com/user-attachments/assets/7cf5888c-51d8-4e97-a986-7d5c09afa714)
 
-# Files
-
-### fnn_keypoint_classification_v2.ipynb
-- This is a model training script for ASL sign recognition.
-
-\AppUI opens the interface that allows you to try making hand signs and detecting them.
-
-\fnn_keypoint_classification_v2.ipynb is the actual model that we used for training.
-
-\utils\data_collection.py takes the images and puts them through mediapipe which then converts it to data the model uses to train on.
-
-\model\keypoint_classifier\keypoint_classifier_label.csv is where the labels are for each class
-
-\model\keypoint_classifier\keypoint.csv is where the data is stored from data_collection.py that is used to trin the model
-
-\utils\flip_images.py is used to augment the data and flip the images for right-to-left-hand conversion and vice versa
-
-\mlp_image_compare.ipynb is another model we created that takes images instead of tabular data
-
-\testing-distance.ipynb another model we created that uses the  distances between neighbor vectors on the hand
-
-\utils\image_collection.py is used to collect images for media pipe to process by holding 'c'
-
-\cnn_keypoint_classification.ipynb another model we made where instead of an mlp if uses a cnn
-
-\keypoint_classification_cross_val.ipynb is when we introduced K-fold cross-validation
 
 # Credits
 
