@@ -14,8 +14,17 @@ How to run it using your webcam
 cd Senior-Project
 
 python AppUI.py
+# How to use the demo
+After running the demo press the live button to simply show an asl hand sign from A-Z 
+
+You can make a word or sentence by showing the sign and concatenating and then clear the output by pressing the clear button.  
 
 [Screencast from 2024-12-12 05-22-26.webm](https://github.com/user-attachments/assets/7cf5888c-51d8-4e97-a986-7d5c09afa714)
+
+# The Model
+
+The AI model in this project uses an MLP neural network that consists of 5 layers 1 input, 3 hidden, and 1 output. The input layer takes in a total of 21 landmark coordinates that are extracted from our own original data set of asl hand signs using mediapipe. Then the input goes through 3 hidden layers the first containing 128 neurons -> 64 neurons -> 32 neurons. The 2nd and 3rd layers have a dropout rate of 40% to prevent overfitting. After each layer, there is batch normalization to prevent gradient vanishing. Each layer utilizes ReLU activation save for the final output layer which makes use of softmax. The reason for using softmax is that it works well when you have multiple classes. Since softmax function converts the raw outputs (logits) of the network into probabilities, making it easier to interpret and optimize the model. Which fits our model which currently has 26 classes (and plans to add more classes).  
+
 
 # Files
 
@@ -43,6 +52,6 @@ python AppUI.py
 
 # Credits
 
-The original code and model our own project was based can be found here
+The original code and model on our own project is based on can be found here
 
 https://github.com/kinivi/hand-gesture-recognition-mediapipe.git
