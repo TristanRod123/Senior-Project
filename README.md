@@ -15,6 +15,18 @@ DOWNLOAD AND INSTALL DATASET (not necessary for running demo, data points record
 -  https://utrgv-my.sharepoint.com/:u:/g/personal/elijah_khamo01_utrgv_edu/ERlo29EEuoRAmaxpRSBpiWkBEOSU-i46tNT5E2G2t4pXTw?e=v8WOOx (EXPIRES EVERY 90 DAYS)
 -  Contact ```Salomonibarra01@outlook.com``` for a new link
 
+# Demo
+Connect Webcam
+
+```python AppUI.py```
+
+After running the demo press the live button to show an asl hand sign from A-Z simply 
+
+You can make a word or sentence by showing the sign and concatenating, then clear the output by pressing the clear button.  
+
+[Screencast from 2024-12-12 05-22-26.webm](https://github.com/user-attachments/assets/7cf5888c-51d8-4e97-a986-7d5c09afa714)
+
+
 # Directory
 ```
 │  .gitattributes
@@ -85,18 +97,6 @@ DOWNLOAD AND INSTALL DATASET (not necessary for running demo, data points record
 
 ### keypoint_classification_cross_val.ipynb 
 - is when we introduced K-fold cross-validation
-
-# Demo
-Connect Webcam
-
-```python AppUI.py```
-
-After running the demo press the live button to show an asl hand sign from A-Z simply 
-
-You can make a word or sentence by showing the sign and concatenating, then clear the output by pressing the clear button.  
-
-[Screencast from 2024-12-12 05-22-26.webm](https://github.com/user-attachments/assets/7cf5888c-51d8-4e97-a986-7d5c09afa714)
-
 
 # Credits
 
