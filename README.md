@@ -24,7 +24,7 @@ After running the demo press the live button to show an asl hand sign from A-Z s
 
 You can make a word or sentence by showing the sign and concatenating, then clear the output by pressing the clear button.  
 
-[Screencast from 2024-12-12 05-22-26.webm](https://github.com/user-attachments/assets/7cf5888c-51d8-4e97-a986-7d5c09afa714)
+[Screencast from 2024-12-12 05-22-26.webm](https://github.com/user-attachments/assets/65c80fdf-be2b-4410-b7fe-6c4fbaf6a1ad)
 
 
 # Directory
@@ -78,7 +78,7 @@ You can make a word or sentence by showing the sign and concatenating, then clea
 - is where the labels are for each class
 
 ### keypoint.csv 
-- is where the data is stored from data_collection.py that is used to trin the model
+- is where the data is stored from data_collection.py that is used to train the model
 
 ### flip_images.py 
 - is used to augment the data and flip the images for right-to-left-hand conversion and vice versa
@@ -97,6 +97,23 @@ You can make a word or sentence by showing the sign and concatenating, then clea
 
 ### keypoint_classification_cross_val.ipynb 
 - is when we introduced K-fold cross-validation
+# Training
+## Step 1 - Image collection
+Our model is not trained using images. We extract coordinates from landmarks on hands using mediapipe and use those coordinates to train our model.
+To collect these images to train the model with new classes do the following 
+- Before you proceed make sure you have a folder where you can store all the images and make sure to change the variable at the top named save_dir to your chosen folder path.
+  -  Example how to make a proper folder "Archive\Hello" Keep in mind that the subfolder name will become the name of the new class you are training
+- Make your way to \utils\image_collection.py when you run the file a camera should open.  As soon as that is done all that has to be done is 
+press 'c' to capture the images and stop by pressing 'q' `when you are satisfied.
+## step 2 - Data Collection
+Once you have your images ready it is time to extract the coordinates needed. 
+- Make your way to \utils\data collection.py at the bottom of the code there is a function named "iter_archive" that takes in an argument for the path of the folder that contains all the all the classes you will be training.
+- Give the function the file path of your folder containing all your classes which contain all the images of the classes you will be training 
+- When you run the function will iterate through your folder that contains multiple classes and will then iterate through each class folder and extract the coordinates from each image. 
+  - It will then append the coordinates to the csv files needed to train the model. Keep in mind that the name of the folder that contains the images will become a new class. 
+## step 3 - Training
+Finally to train the model might be more difficult depending on the resources of your computer. To train the model just run every cell in the file "fnn_keypoint_classification_v2.ipynb"
+This will train the model with your newly added classes. 
 
 # Credits
 
